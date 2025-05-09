@@ -1,0 +1,89 @@
+*{
+    font-size: 18px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: whitesmoke;
+}
+
+/* utility styles start here*/
+
+.btn{
+    background-color: black;
+    color: whitesmoke;
+}
+
+.btn:hover{
+    background-color: #ffd700;
+    color: black;
+    transform: scale(1.1);
+}
+
+.hidden{
+    display: none;
+}
+
+/* .disabled-btn, .disabled-btn:hover{
+    border: 1px solid whitesmoke;
+    background-color: lightgray;
+} */
+/* utility styles end here */
+
+h1{
+    margin: 2% auto;
+    text-align: center;
+    font-size: 2.5rem;
+}
+
+#container{
+    border: 3px solid black;
+    border-radius: 5px;
+}
+
+#task-input-container{
+    padding: 2%;
+    border: 2px solid gray;
+    border-radius: 50px;
+    margin: 2% auto 5%;
+    width: 95%;
+}
+
+#task-input{
+    border: 1px solid gray;
+    border-radius: 50px 0 0 50px;
+    width: 85%;
+}
+
+#add-task-btn, #update-btn{
+    border-radius: 0 50px 50px 0;
+}
+
+#tasks-container{
+    margin: 0 auto 2%;
+    width: 95%;
+}
+
+.task{
+    padding: 10px;
+    border-bottom: 1px solid gray;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.task-complete{
+    text-decoration: line-through;
+}
+
+#edit-form{
+    background-color: darkgray;
+}
+
+.task-controls{
+    display: flex;
+    justify-content: space-between;
+}
+
+/* @media queries*/
