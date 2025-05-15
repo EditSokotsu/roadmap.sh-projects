@@ -5,23 +5,7 @@ const editForm = document.getElementById("edit-form")
 const editInput = document.getElementById("edit-input")
 const updateBtn = document.getElementById("update-btn")
 
-let tasksArr = [
-    {
-        id: 0,
-        title: "go to gym",
-        status: "incomplete"
-    },
-    {
-        id: 1,
-        title: "Build stuff",
-        status: "incomplete"
-    },
-    {
-        id: 2,
-        title: "F*&% that yaebe",
-        status: "incomplete"
-    }
-]
+let tasksArr = []
 
 const completedTasks = []
 
@@ -37,7 +21,7 @@ function createTask(){
     }
 
     let newTask = {
-        id: Number(`${tasksArr.length}-${Date.now}`),
+        id: Math.floor((Math.random() * (taskComplete.length+1)) * 99),
         title: taskInput.value,
         status: "incomplete"
     }
@@ -45,6 +29,7 @@ function createTask(){
     tasksArr.push(newTask)
     renderTasks()
     taskInput.value = ""
+    console.log(tasksArr)
 }
 
 /*  
@@ -63,7 +48,6 @@ function renderTasks(){
                     <input type="checkbox" class="task-checkbox" onclick="taskComplete(${task.id})">
                     <span>${task.title}</span>
                     <span class="task-controls">
-                        <button type="button" class="btn edit-btn" onclick="editTask(${task.id})">Edit</button>
                         <button type="button" class="btn delete-btn" onclick="deleteTask(${task.id})">Delete</button>
                     </span>
                 </div>
@@ -75,7 +59,6 @@ function renderTasks(){
                     <input type="checkbox" class="task-checkbox" onclick="uncheckTask(${task.id})" checked>
                     <span class="task-complete">${task.title}</span>
                     <span class="task-controls">
-                        <button type="button" class="edit-btn" onclick="editTask(${task.id})" disabled >Edit</button>
                         <button type="button" class="btn delete-btn" onclick="deleteTask(${task.id})">Delete</button>
                     </span>
                 </div>
@@ -86,23 +69,6 @@ function renderTasks(){
     else{
         return tasksContainer.innerHTML = ""
     }
-}
-
-
-/* 
-@func: editTask()
-@para: id
-@comm: this function is responsible for changing the value of a task title when the edit button is clicked.
-*/
-function editTask(id){
-    editForm.showModal()
-    let taskToEdit = tasksArr.find(item => item.id === id)
-    
-    updateBtn.addEventListener("click", () => {
-        taskToEdit.title = editInput.value
-        editForm.close()
-        renderTasks()
-    })
 }
 
 /*
@@ -123,22 +89,39 @@ function deleteTask(id){
 */
 function taskComplete(id){
     const completedTask = tasksArr.find(item => item.id === id)
-    completedTask.status = "completed"
+    completedTask.status = "complete"
     tasksArr = tasksArr.filter(item => item.id !== id)
-    console.log("completedTask: ", completedTask, "\n",
-        "tasks array: ", tasksArr)
     tasksArr.push(completedTask)
-    console.log("tasksArr: ", tasksArr)
     renderTasks()
 }
 
 /* 
 @func: uncheckTask()
 @para: id
-@comm:
+@comm: 
 */
 function uncheckTask(id){
-
+    const taskUncheck = tasksArr.find(item => item.id === id)
+    tasksArr = tasksArr.filter(item => item.id !== id)
+    taskUncheck.status = "incomplete"
+    tasksArr.unshift(taskUncheck)
+    renderTasks()
 }
 
+taskInput.addEventListener("keydown", event => {
+    if(event.key === "Enter"){
+        createTask()
+    }
+})
+
+editInput.addEventListener("keydown", event => {
+    if(event.key === "Enter"){
+        createTask()
+    }
+})
+
+
 renderTasks()
+/* 
+had a look at some of y'alls projects and saw y'all didn't implement an edit, so I didn't either. And I couldn't do it, XD!
+*/

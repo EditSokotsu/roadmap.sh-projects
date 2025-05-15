@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CRUD Tutorial</title>
-    <link rel="stylesheet" href="crud.css">
+    <link rel="stylesheet" href="taskTracker.css">
 </head>
 <body>
     <h1>TODO App</h1>
@@ -13,22 +13,15 @@
             <input type="text" name="task-input" id="task-input">
             <button type="button" class="btn" id="add-task-btn" onclick="createTask()">Add</button>
         </div>
-        <dialog id="edit-form" onclick="closeModal()">
+        <dialog id="edit-form">
+            <img src="close_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.svg" alt="close button for edit form" id="edit-form-close">
             <input type="text" name="edit-input" id="edit-input">
             <button type="button" class="btn" id="update-btn">Update</button>
         </dialog>
         <div id="tasks-container">
-            <!-- <div class="task">
-                <input type="checkbox" class="task-checkbox" onclick="uncheckTask(${task.id})" checked>
-                <span class="task-complete">${task.title}</span>
-                <span class="task-controls">
-                    <button type="button" class="btn edit-btn" onclick="editTask(${task.id})" disabled >Edit</button>
-                    <button type="button" class="btn delete-btn" onclick="deleteTask(${task.id})">Delete</button>
-                </span>
-            </div> -->
-        </div>
+            <!-- tasks go here -->
         </div>
     </div>
-    <script src="crud.js"></script>
+    <script src="taskTracker.js"></script>
 </body>
 </html>
