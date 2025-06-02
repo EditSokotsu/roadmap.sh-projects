@@ -5,14 +5,14 @@ const editForm = document.getElementById("edit-form")
 const editInput = document.getElementById("edit-input")
 const updateBtn = document.getElementById("update-btn")
 
-let tasksArr = []
+let tasksArr = JSON.parse(localStorage.getItem("taskData")) || []
 
 const completedTasks = []
 
 /* 
 @func: createTask()
 @para: none
-@comm: 
+@comm: this function creates a new task.
 */
 function createTask(){
     if(taskInput.value === "" || taskInput.value === " "){
@@ -29,13 +29,13 @@ function createTask(){
     tasksArr.push(newTask)
     renderTasks()
     taskInput.value = ""
-    saveTaskData()
+    localStorage.setItem("taskData", JSON.stringify(tasksArr))
 }
 
 /*  
 @func: renderTasks()
 @para: none
-@comm: 
+@comm: this function is responsible for updating the DOM with the task stored in the task array. It handles both complete and incomplete tasks.
 */
 function renderTasks(){
     tasksContainer.innerHTML = ""
@@ -79,7 +79,7 @@ function renderTasks(){
 function deleteTask(id){
    tasksArr = tasksArr.filter(item => item.id !== id)
    renderTasks()
-   saveTaskData()
+   localStorage.setItem("taskData", JSON.stringify(tasksArr))
 }
 
 
@@ -93,7 +93,7 @@ function taskComplete(id){
     completedTask.status = "complete"
     tasksArr = tasksArr.filter(item => item.id !== id)
     tasksArr.push(completedTask)
-    saveTaskData()
+    localStorage.setItem("taskData", JSON.stringify(tasksArr))
     renderTasks()
 }
 
@@ -107,7 +107,7 @@ function uncheckTask(id){
     tasksArr = tasksArr.filter(item => item.id !== id)
     taskUncheck.status = "incomplete"
     tasksArr.unshift(taskUncheck)
-    saveTaskData()
+    localStorage.setItem("taskData", JSON.stringify(tasksArr))
     renderTasks()
 }
 
@@ -123,11 +123,7 @@ editInput.addEventListener("keydown", event => {
     }
 })
 
-function saveTaskData(){
-    localStorage.setItem("task data", JSON.stringify(tasksArr))
-}
-
 renderTasks()
 /* 
-had a look at some of y'alls projects and saw y'all didn't implement an edit, so I didn't either. And I couldn't do it, XD!
+had a look at some of y'alls projects and saw y'all didn't implement an edit, so I didn't either....Plus, I couldn't do it, XD!
 */
