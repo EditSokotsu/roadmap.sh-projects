@@ -29,7 +29,7 @@ function createTask(){
     tasksArr.push(newTask)
     renderTasks()
     taskInput.value = ""
-    console.log(tasksArr)
+    saveTaskData()
 }
 
 /*  
@@ -79,6 +79,7 @@ function renderTasks(){
 function deleteTask(id){
    tasksArr = tasksArr.filter(item => item.id !== id)
    renderTasks()
+   saveTaskData()
 }
 
 
@@ -92,6 +93,7 @@ function taskComplete(id){
     completedTask.status = "complete"
     tasksArr = tasksArr.filter(item => item.id !== id)
     tasksArr.push(completedTask)
+    saveTaskData()
     renderTasks()
 }
 
@@ -105,6 +107,7 @@ function uncheckTask(id){
     tasksArr = tasksArr.filter(item => item.id !== id)
     taskUncheck.status = "incomplete"
     tasksArr.unshift(taskUncheck)
+    saveTaskData()
     renderTasks()
 }
 
@@ -120,6 +123,9 @@ editInput.addEventListener("keydown", event => {
     }
 })
 
+function saveTaskData(){
+    localStorage.setItem("task data", JSON.stringify(tasksArr))
+}
 
 renderTasks()
 /* 
